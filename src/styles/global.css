@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Yatay galeri slider'ı için kaydırma çubuğunu gizler (Tailwind çekirdeğinde yok). */
+@utility scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/* Fixed Header: Anchor-Sprünge (#leistungen, #kontakt …) landen unterhalb des Headers. */
+html {
+	scroll-padding-top: var(--header-h, 6rem);
+}

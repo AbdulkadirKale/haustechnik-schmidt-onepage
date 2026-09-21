@@ -1,0 +1,28 @@
+---
+import { getEntry } from 'astro:content';
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const firmenprofil = (await getEntry('firmenprofil', 'firmenprofil'))?.data;
+const telefonHref = firmenprofil?.phone.replace(/[^\d+]/g, '') ?? '';
+---
+
+
+	<LegalLayout title={`Impressum | ${firmenprofil?.companyName ?? ''}`} description={`Impressum von ${firmenprofil?.companyName ?? ''}.`}>
+		<article>
+				<p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-700">Rechtliche Informationen</p>
+				<h1>Impressum</h1>
+				<p>Angaben gemäß § 5 TMG</p>
+				<h2>Anbieter</h2>
+				<p>{firmenprofil?.companyName}<br />{firmenprofil?.street}<br />{firmenprofil?.postalCode} {firmenprofil?.city}<br />Deutschland</p>
+				<h2>Kontakt</h2>
+				<p>Telefon: <a href={`tel:${telefonHref}`}>{firmenprofil?.phone}</a><br />E-Mail: <a href={`mailto:${firmenprofil?.email}`} class="relative z-50 cursor-pointer block">{firmenprofil?.email}</a></p>
+				<h2>Vertretungsberechtigt</h2>
+				<p>{firmenprofil?.inhaber}</p>
+				<h2>Steuernummer</h2>
+				<p>{firmenprofil?.steuerNummer}</p>
+				<h2>Umsatzsteuer-ID</h2>
+				<p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />{firmenprofil?.ustIdNr}</p>
+				<h2>Verantwortlich für den Inhalt</h2>
+				<p>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:<br />{firmenprofil?.inhaber}<br />{firmenprofil?.street}<br />{firmenprofil?.postalCode} {firmenprofil?.city}</p>
+		</article>
+	</LegalLayout>

@@ -1,0 +1,26 @@
+# Singleton: wird über getEntry('startseite', 'startseite') geladen.
+startseite:
+  heroTopLabel: SANITÄR & HEIZUNG
+  heroHeadline: Ihr zuverlässiger Partner für Sanitär & Heizung
+  heroSubheadline: Ihre Haustechnik in guten Händen. Wir planen und realisieren Lösungen, die zuverlässig funktionieren und sich gut anfühlen.
+  heroStatBox: 25+ Jahre Erfahrung für moderne Haustechnik in der Region.
+  heroButton1Text: Leistungen entdecken
+  heroButton1Link: '#leistungen'
+  heroButton2Text: Kontakt aufnehmen
+  heroButton2Link: '#kontakt'
+  heroBackgroundImage: ''
+  servicesHeadline: Technik, die den Alltag leichter macht.
+  servicesSubtext: Persönliche Beratung, saubere Arbeit und Lösungen, die langfristig zu Ihnen passen.
+  contactHeadline: Wir sind für Sie da.
+  contactSubtext: 'Ob Beratung, Reparatur oder neues Heizsystem: Sprechen Sie uns an. Wir melden uns persönlich bei Ihnen.'
+  footerCopyright: Copyright © 2026 Haustechnik Schmidt
+  notdienstLabel: Notdienst 24/7
+  contactLabel: Kontakt
+  phoneLabel: Telefon
+  emailLabel: E-Mail
+  addressLabel: Adresse
+  serviceLinkText: Mehr erfahren
+  formNameLabel: Name
+  formEmailLabel: E-Mail
+  formMessageLabel: Nachricht
+  formSubmitText: Nachricht senden

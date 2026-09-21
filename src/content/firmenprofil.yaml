@@ -1,0 +1,17 @@
+# Singleton: wird über getEntry('firmenprofil', 'firmenprofil') geladen.
+firmenprofil:
+  companyName: Haustechnik Schmidt
+  inhaber: Max Schmidt
+  street: Musterstraße 12
+  postalCode: '10115'
+  city: Berlin
+  phone: '+49 30 12345678'
+  email: hallo@haustechnik-schmidt.de
+  steuerNummer: '12/345/67890'
+  ustIdNr: DE123456789
+  notdienstActive: true
+  notdienstNumber: '+49 30 12345678'
+  openingHours: |-
+    Mo – Fr: 08:00 – 17:00 Uhr
+    Sa: 09:00 – 13:00 Uhr
+    So & Feiertage: nur Notdienst

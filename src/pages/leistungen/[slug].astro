@@ -1,0 +1,95 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+	const leistungen = await getCollection('leistungen');
+
+	return leistungen.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry },
+	}));
+}
+
+const firmenprofil = (await getEntry('firmenprofil', 'firmenprofil'))?.data;
+const { entry } = Astro.props;
+const leistung = entry.data;
+const titel = leistung.title;
+const email = firmenprofil?.email ?? '';
+const telefon = firmenprofil?.phone ?? '';
+const telefonHref = telefon.replace(/[^\d+]/g, '');
+const adresse = firmenprofil ? `${firmenprofil.street}\n${firmenprofil.postalCode} ${firmenprofil.city}` : '';
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${firmenprofil?.street ?? ''} ${firmenprofil?.postalCode ?? ''} ${firmenprofil?.city ?? ''}`)}`;
+const oeffnungszeiten = (firmenprofil?.openingHours ?? '').split('\n').filter((zeile) => zeile.trim() !== '');
+const heroImage = leistung.bilder[0]?.src ?? '';
+
+// Markdown-Body der Leistung als Astro-Komponente.
+const { Content } = await render(entry);
+---
+
+	<Layout title={`${titel} | ${firmenprofil?.companyName ?? ''}`} description={`${titel} | ${firmenprofil?.companyName ?? ''}`}>
+		<main>
+			<section class="relative overflow-hidden bg-slate-900 px-6 py-12 text-white lg:px-10 lg:py-16">
+				<div class="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(34,211,238,0.16),transparent_35%),linear-gradient(135deg,#0f172a,#0b2138)]" style={heroImage ? `background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(11, 33, 56, 0.85)), url('${heroImage}'); background-size: cover; background-position: center;` : undefined}></div>
+				<div class="relative mx-auto max-w-6xl">
+					<nav class="mb-4 flex flex-wrap items-center gap-2 text-sm text-slate-400" aria-label="Breadcrumb">
+						<a href="/" class="relative z-10 transition hover:text-cyan-300">Startseite</a>
+						<span aria-hidden="true">›</span>
+						<a href="/#leistungen" class="relative z-10 transition hover:text-cyan-300">Leistungen</a>
+						<span aria-hidden="true">›</span>
+						<span class="text-slate-200">{titel}</span>
+					</nav>
+					<h1 class="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">{titel}</h1>
+					<p class="mt-4 max-w-2xl whitespace-pre-line leading-7 text-slate-300">{leistung.summary}</p>
+				</div>
+			</section>
+
+			<div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-3 lg:px-10">
+				<div class="lg:col-span-2">
+					<div class="prose prose-lg prose-slate max-w-none prose-headings:tracking-tight prose-headings:text-slate-900 prose-a:text-cyan-700 hover:prose-a:text-cyan-900">
+						<Content />
+					</div>
+				</div>
+
+				<aside class="lg:col-span-1">
+					<div class="sticky top-28 rounded-2xl bg-slate-50 p-8 shadow-sm">
+						<h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-cyan-700">Schnelle Hilfe benötigt?</h2>
+						<p class="mb-6 text-2xl font-bold text-slate-900">Wir sind für Sie da.</p>
+
+						<dl class="space-y-5 text-slate-900">
+							<div>
+								<dt class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Telefon</dt>
+								<dd><a href={`tel:${telefonHref}`} class="relative z-10 mt-1 block w-fit text-lg font-bold transition hover:text-cyan-700">{telefon}</a></dd>
+							</div>
+
+							<div>
+								<dt class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">E-Mail</dt>
+								<dd><a href={`mailto:${email}?subject=${encodeURIComponent(`Anfrage: ${titel}`)}`} class="relative z-50 cursor-pointer block mt-1 w-fit break-words text-lg font-bold transition hover:text-cyan-700">{email}</a></dd>
+							</div>
+
+							<div>
+								<dt class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Adresse</dt>
+								<dd><a href={mapsHref} target="_blank" rel="noopener noreferrer" class="relative z-10 mt-1 block w-fit whitespace-pre-line font-semibold leading-7 transition hover:text-cyan-700">{adresse}</a></dd>
+							</div>
+
+							{oeffnungszeiten.length > 0 && (
+								<div>
+									<dt class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Öffnungszeiten</dt>
+									<dd class="mt-1 space-y-1 text-sm font-medium text-slate-700">
+										{oeffnungszeiten.map((zeile) => <p>{zeile}</p>)}
+									</dd>
+								</div>
+							)}
+
+						</dl>
+
+						<a href="/#kontakt" class="relative z-10 mt-8 block w-full rounded-lg bg-slate-900 py-3 text-center font-semibold text-white transition-colors hover:bg-slate-800">
+							Jetzt kontaktieren &rarr;
+						</a>
+					</div>
+				</aside>
+			</div>
+		</main>
+	</Layout>

@@ -1,0 +1,23 @@
+---
+import { getEntry } from 'astro:content';
+
+const startseite = (await getEntry('startseite', 'startseite'))?.data;
+const firmenprofil = (await getEntry('firmenprofil', 'firmenprofil'))?.data;
+const phone = firmenprofil?.phone ?? '';
+const email = firmenprofil?.email ?? '';
+const phoneHref = phone.replace(/[^\d+]/g, '');
+---
+
+<footer class="bg-slate-900 px-6 py-8 text-slate-400">
+	<div class="mx-auto flex max-w-7xl flex-col gap-4 text-sm sm:flex-row sm:items-center sm:justify-between lg:px-4">
+		<p>{startseite?.footerCopyright}</p>
+		<div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+			<a href={`tel:${phoneHref}`} class="relative z-10 transition hover:text-white">{phone}</a>
+			<a href={`mailto:${email}`} class="relative z-50 cursor-pointer block transition hover:text-white">{email}</a>
+		</div>
+		<nav class="flex gap-6" aria-label="Rechtliche Hinweise">
+			<a href="/impressum" class="relative z-10 transition hover:text-white">Impressum</a>
+			<a href="/datenschutz" class="relative z-10 transition hover:text-white">Datenschutz</a>
+		</nav>
+	</div>
+</footer>

@@ -1,17 +1,365 @@
 ---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
 
+const leistungen = (await getCollection('leistungen'))
+	.sort((a, b) => a.data.order - b.data.order)
+	.map((entry) => ({
+		slug: entry.id,
+		data: {
+			title: entry.data.title,
+			summary: entry.data.summary,
+			bilder: entry.data.bilder,
+		},
+	}));
+const startseite = (await getEntry('startseite', 'startseite'))?.data;
+const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+		<Layout title="Haustechnik Schmidt | Sanitär & Heizung">
+		<main>
+			<section class="reveal relative isolate overflow-hidden bg-slate-950 opacity-0 translate-y-10 transition-all duration-500">
+				<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(14,116,144,0.28),transparent_34%),linear-gradient(135deg,#020617_0%,#0f2942_58%,#164e63_100%)]" style={heroBackgroundImage ? `background-image: linear-gradient(135deg, rgba(2, 6, 23, 0.86), rgba(15, 41, 66, 0.78)), url('${heroBackgroundImage}')` : undefined}></div>
+				<div class="absolute -right-24 top-16 -z-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"></div>
+				<div class="absolute -bottom-40 left-1/3 -z-10 h-96 w-96 rounded-full bg-blue-700/15 blur-3xl"></div>
+				<div class="mx-auto grid min-h-[680px] max-w-7xl items-center gap-16 px-6 pb-24 pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:pb-32 lg:pt-28">
+					<div class="max-w-2xl">
+						<p class="mb-6 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+							<span class="h-px w-10 bg-cyan-300"></span>
+							{startseite?.heroTopLabel}
+						</p>
+						<h1 class="max-w-3xl whitespace-pre-line text-5xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">{startseite?.heroHeadline}</h1>
+						<p class="mt-7 max-w-lg whitespace-pre-line text-lg leading-8 text-slate-300">{startseite?.heroSubheadline}</p>
+						<div class="mt-10 flex flex-wrap gap-4">
+							<a href="#leistungen" class="inline-flex items-center gap-3 rounded-xl bg-cyan-300 px-6 py-3.5 text-sm font-bold text-slate-950 transition-all duration-300 hover:-translate-y-2 hover:bg-cyan-200 hover:shadow-2xl hover:shadow-cyan-950/30">{startseite?.heroButton1Text} <span aria-hidden="true">→</span></a>
+							<a href="#kontakt" class="inline-flex items-center rounded-xl border border-slate-600 px-6 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-2 hover:border-cyan-300 hover:text-cyan-300 hover:shadow-2xl hover:shadow-blue-950/30">{startseite?.heroButton2Text}</a>
+						</div>
+					</div>
+					<div class="relative hidden min-h-[350px] lg:block">
+						<div class="absolute right-10 top-8 h-64 w-64 rounded-full border border-cyan-300/30"></div>
+						<div class="absolute bottom-0 right-0 h-72 w-72 rounded-full border border-white/10"></div>
+						<div class="absolute right-16 top-24 max-w-xs border-l border-cyan-300/60 pl-6 text-slate-300">
+							<p class="text-4xl font-semibold text-white">{startseite?.heroStatBox}</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="leistungen" class="reveal bg-white py-24 text-slate-950 opacity-0 translate-y-10 transition-all duration-500 lg:py-32">
+				<div class="mx-auto max-w-7xl px-6 lg:px-10">
+					<div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+						<div>
+							<p class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-cyan-700">Was wir tun</p>
+							<h2 class="max-w-xl text-4xl font-semibold tracking-tight sm:text-5xl">{startseite?.servicesHeadline}</h2>
+						</div>
+						<p class="max-w-sm whitespace-pre-line text-base leading-7 text-slate-500">{startseite?.servicesSubtext}</p>
+					</div>
+					<div id="leistungen-slider" class="flex overflow-x-auto snap-x snap-mandatory gap-6 -mx-6 px-6 -mt-4 pt-4 pb-16 scrollbar-hide scroll-smooth [&.is-moving>article]:pointer-events-none">
+						{leistungen.map((leistung) => (
+							<article class="group relative shrink-0 snap-center w-[90%] md:w-[85%] lg:w-[75%] flex flex-col md:flex-row bg-slate-50/60 backdrop-blur-sm border border-slate-200 rounded-3xl overflow-hidden transition-[scale,box-shadow,background-color] duration-500 hover:bg-white hover:scale-[1.02] hover:shadow-xl">
+								<div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+									<h3 class="mb-5 text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">{leistung.data.title}</h3>
+									<p class="mb-10 leading-7 text-slate-600 line-clamp-4">{leistung.data.summary}</p>
+									<a href={`/leistungen/${leistung.slug}`} class="relative z-10 inline-flex w-fit items-center gap-3 rounded-xl bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800">
+										{startseite?.serviceLinkText ?? 'Mehr erfahren'}
+										<svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+									</a>
+								</div>
+
+								<div class="w-full md:w-1/2 overflow-hidden">
+									{leistung.data.bilder[0]
+										? <img src={leistung.data.bilder[0].src} alt={leistung.data.bilder[0].alt || leistung.data.title} loading="lazy" class="w-full h-64 md:h-full object-cover" />
+										: <div class="w-full h-64 md:h-full bg-slate-100 flex items-center justify-center text-sm text-slate-400">Noch keine Bilder hinterlegt</div>}
+								</div>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section id="ueber-uns" class="reveal overflow-hidden bg-slate-950 py-24 opacity-0 translate-y-10 transition-all duration-500 lg:py-32">
+				<div class="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:gap-24 lg:px-10">
+					<div class="relative min-h-[380px] overflow-hidden rounded-3xl border border-cyan-300/20 bg-gradient-to-br from-cyan-900 via-slate-800 to-slate-950 shadow-2xl shadow-blue-950/20">
+						<div class="absolute -right-16 -top-16 h-64 w-64 rounded-full border border-cyan-300/20"></div>
+						<div class="absolute bottom-8 left-8 right-8 border-l-2 border-cyan-300/70 bg-slate-950/60 p-6 backdrop-blur-sm">
+							<p class="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">Handwerk mit Haltung</p>
+							<p class="mt-3 text-xl font-semibold text-white">Saubere Lösungen. Spürbarer Komfort.</p>
+						</div>
+						<div class="absolute bottom-0 right-12 h-56 w-24 rotate-12 border-l border-r border-cyan-300/20 bg-cyan-300/10"></div>
+					</div>
+					<div>
+						<p class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Über uns</p>
+						<h2 class="max-w-xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">25 Jahre Erfahrung in Sanitär & Heizung</h2>
+						<p class="mt-6 max-w-xl leading-8 text-slate-300">Wir verbinden solides Handwerk mit moderner Haustechnik. Von der ersten Beratung bis zur letzten Prüfung arbeiten wir sauber, verbindlich und mit Blick auf eine Lösung, die lange Freude macht.</p>
+						<ul class="mt-8 space-y-4 text-slate-200">
+							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> Pünktlichkeit und verlässliche Termine</li>
+							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> Transparente Preise ohne Überraschungen</li>
+							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> 24/7 Notdienst, wenn es darauf ankommt</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="reveal bg-slate-50 py-24 text-slate-950 opacity-0 translate-y-10 transition-all duration-500 lg:py-32">
+				<div class="mx-auto max-w-7xl px-6 lg:px-10">
+					<div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+						<div>
+							<p class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-cyan-700">Kundenstimmen</p>
+							<h2 class="max-w-xl text-4xl font-semibold tracking-tight sm:text-5xl">Was unsere Kunden sagen.</h2>
+						</div>
+						<p class="max-w-sm leading-7 text-slate-500">Verlässlicher Service spricht sich herum. Ein kleiner Auszug aus unserem Kundenfeedback.</p>
+					</div>
+					<div class="grid gap-5 lg:grid-cols-3">
+						{[
+							{ name: 'Max Mustermann', quote: 'Von der Beratung bis zur Montage war alles professionell, freundlich und pünktlich.' },
+							{ name: 'Anna Schneider', quote: 'Schnelle Hilfe im Notdienst und eine saubere Reparatur. Genau so wünscht man sich Handwerk.' },
+							{ name: 'Thomas Weber', quote: 'Transparente Planung, faire Preise und ein Ergebnis, das unseren Alltag wirklich verbessert.' },
+						].map((testimonial) => (
+							<article class="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg shadow-blue-900/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-900/15">
+								<div class="flex gap-1 text-lg text-amber-500" aria-label="5 von 5 Sternen">★★★★★</div>
+								<p class="mt-6 min-h-24 leading-7 text-slate-600">„{testimonial.quote}“</p>
+								<p class="mt-8 text-sm font-bold text-slate-950">{testimonial.name}</p>
+								<p class="mt-1 text-xs uppercase tracking-[0.14em] text-cyan-700">Kunde</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+		</main>
+		
+
+		<script>
+			// Premium-Scrolling für den Leistungen-Slider: eigene Lerp-Animation (Friction) plus Momentum
+			// für Maus-Drag und horizontales Mausrad/Trackpad. Touch bleibt komplett nativ (CSS Scroll-Snap).
+			const slider = document.getElementById('leistungen-slider');
+
+			if (slider) {
+				// ---- Feintuning ----
+				const DRAG_SPEED = 1.5; // Kaydırma hızı çarpanı: Scroll-px pro px Mausweg
+				const SMOOTH_DRAG = 110; // ms Nachlauf beim Ziehen (größer = schwerer, "butterweich")
+				const SMOOTH_SETTLE = 380; // ms Ausgleiten in die Zielkarte (größer = sanfteres Anfahren, längeres Gleiten)
+				const MOMENTUM = 380; // ms Trägheit: Loslass-Geschwindigkeit x Wert = Zusatzweg
+				const FLICK_MIN = 80; // px: kürzere Bewegungen fallen auf die aktuelle Karte zurück
+				const WHEEL_IDLE = 140; // ms ohne Wheel-Event, danach rastet der Slider ein
+
+				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+				const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+				const maxScroll = () => slider.scrollWidth - slider.clientWidth;
+
+				let pos = 0; // aktuelle Position (float; scrollLeft wird vom Browser gerundet)
+				let vel = 0; // aktuelle Geschwindigkeit in px/ms: bleibt beim Loslassen erhalten (Momentum)
+				let target = 0; // Zielposition, auf die pos zuläuft
+				let rafId = 0;
+				let lastFrame = 0;
+				let animating = false;
+
+				let isDown = false;
+				let hasMoved = false;
+				let startX = 0;
+				let startScroll = 0;
+				let samples = []; // letzte Mauspositionen für die Loslass-Geschwindigkeit
+				let lastTouch = 0;
+				let wheelTimer = 0;
+				let wheelOrigin = 0;
+
+				// CSS-Snap und Smooth-Scroll würden jeden Frame sofort zurücksetzen bzw. verzögern:
+				// nur solange unsere Animation läuft abschalten, danach übernimmt wieder das CSS (Touch, Tastatur, Anker).
+				const begin = () => {
+					if (animating) return;
+					animating = true;
+					slider.style.scrollSnapType = 'none';
+					slider.style.scrollBehavior = 'auto';
+					for (const card of slider.children) card.style.willChange = 'translate';
+					lastFrame = 0; // erster Frame: dt = 0 (der rAF-Zeitstempel kann vor performance.now() liegen)
+					rafId = requestAnimationFrame(tick);
+				};
+				const finish = () => {
+					animating = false;
+					cancelAnimationFrame(rafId);
+					slider.classList.remove('is-moving');
+					for (const card of slider.children) {
+						card.style.translate = '';
+						card.style.willChange = '';
+					}
+					slider.style.scrollSnapType = '';
+					slider.style.scrollBehavior = '';
+				};
+				// Hover-Effekte pausieren, solange sich der Slider bewegt (Karten wandern unter dem stehenden Cursor durch).
+				const setMoving = () => slider.classList.add('is-moving');
+
+				// scrollLeft ist ganzzahlig (bei 144/240 Hz sichtbares Treppen-Ruckeln bei langsamer Bewegung). Deshalb:
+				// ganzzahliger scrollLeft + Bruchteil als Sub-Pixel-Translation der Karten (läuft auf dem Compositor).
+				const render = () => {
+					slider.scrollLeft = Math.floor(pos);
+					const frac = pos - slider.scrollLeft; // tatsächlich gesetzten Wert lesen (robust bei DPR != 1)
+					const offset = frac ? `${-frac}px 0` : '';
+					for (const card of slider.children) card.style.translate = offset;
+				};
+				// Kritisch gedämpfte Feder (SmoothDamp): weiches Anfahren und Ausgleiten, die Geschwindigkeit ist
+				// immer stetig, also kein Ruck beim Loslassen. Frame-Rate-unabhängig (60, 120, 144 Hz fühlen sich gleich an).
+				const smoothDamp = (dt, smoothTime) => {
+					const omega = 2 / smoothTime;
+					const x = omega * dt;
+					const decay = 1 / (1 + x + 0.48 * x * x + 0.235 * x * x * x);
+					const change = pos - target;
+					const temp = (vel + omega * change) * dt;
+					vel = (vel - omega * temp) * decay;
+					pos = target + (change + temp) * decay;
+				};
+				const tick = (now) => {
+					const dt = lastFrame ? Math.min(Math.max(now - lastFrame, 0), 50) : 0;
+					lastFrame = now;
+					if (reduceMotion.matches) {
+						pos = target;
+						vel = 0;
+					} else {
+						smoothDamp(dt, isDown || wheelTimer ? SMOOTH_DRAG : SMOOTH_SETTLE);
+					}
+					const clamped = clamp(pos, 0, maxScroll());
+					if (clamped !== pos) vel = 0; // am Rand stoppt die Bewegung
+					pos = clamped;
+					render();
+					const remaining = Math.abs(target - pos);
+					// Fast angekommen: Klicks und Hover-Effekte wieder freigeben, die letzten Pixel gleiten unmerklich aus.
+					if (!isDown && !wheelTimer && remaining < 40) slider.classList.remove('is-moving');
+					if (!isDown && !wheelTimer && remaining < 0.2 && Math.abs(vel) < 0.006) {
+						pos = target;
+						vel = 0;
+						slider.scrollLeft = target;
+						finish();
+						return;
+					}
+					rafId = requestAnimationFrame(tick);
+				};
+				const syncFromDom = () => {
+					if (!animating) pos = target = slider.scrollLeft;
+				};
+
+				// Einrastpunkte = Mitte jeder Karte (wie snap-center), an Anfang und Ende begrenzt.
+				const getSnaps = () => {
+					const rect = slider.getBoundingClientRect();
+					const center = rect.left + slider.clientLeft + slider.clientWidth / 2;
+					return [...slider.children].map((el) => {
+						const r = el.getBoundingClientRect();
+						return clamp(Math.round(pos + (r.left + r.width / 2) - center), 0, maxScroll());
+					});
+				};
+				const nearest = (snaps, x) =>
+					snaps.reduce((best, s, i) => (Math.abs(s - x) < Math.abs(snaps[best] - x) ? i : best), 0);
+
+				// Gleitet zur Karte, die der voraussichtlichen Landeposition am nächsten liegt.
+				const settle = (projected, origin) => {
+					const snaps = getSnaps();
+					const from = nearest(snaps, origin);
+					let to = nearest(snaps, projected);
+					const moved = projected - origin;
+					if (to === from && Math.abs(moved) > FLICK_MIN) {
+						to = from + Math.sign(moved);
+					}
+					to = clamp(to, Math.max(0, from - 1), Math.min(snaps.length - 1, from + 1)); // max. eine Karte pro Geste
+					target = snaps[to];
+					begin();
+				};
+
+				// ---- Maus-Drag ----
+				slider.addEventListener('mousedown', (e) => {
+					// Nach einem Tap feuern Browser simulierte Mausereignisse: ignorieren, Touch bleibt nativ.
+					if (e.button !== 0 || Date.now() - lastTouch < 800) return;
+					// Verhindert das native Ziehen von Bildern/Links und die Textmarkierung.
+					e.preventDefault();
+					syncFromDom();
+					vel = 0;
+					isDown = true;
+					hasMoved = false;
+					startX = e.pageX;
+					startScroll = pos;
+					target = pos;
+					samples = [{ t: e.timeStamp, x: e.pageX }];
+					slider.classList.add('cursor-grabbing');
+					begin();
+				});
+
+				// Auf window, damit der Drag auch weiterläuft, wenn der Cursor den Slider verlässt.
+				window.addEventListener('mousemove', (e) => {
+					if (!isDown) return;
+					e.preventDefault();
+					const dx = e.pageX - startX;
+					if (!hasMoved && Math.abs(dx) > 5) {
+						hasMoved = true;
+						setMoving();
+					}
+					target = clamp(startScroll - dx * DRAG_SPEED, 0, maxScroll());
+					samples.push({ t: e.timeStamp, x: e.pageX });
+					if (samples.length > 8) samples.shift();
+				});
+
+				const release = (now = performance.now()) => {
+					if (!isDown) return;
+					isDown = false;
+					slider.classList.remove('cursor-grabbing');
+					// Loslass-Geschwindigkeit aus den letzten ~100 ms; wer vor dem Loslassen stoppt, hat keine Trägheit.
+					const last = samples[samples.length - 1];
+					const first = samples.find((s) => last.t - s.t <= 100);
+					let velocity = 0; // Scroll-px pro ms, positiv = vorwärts
+					if (first && last.t > first.t && now - last.t < 80) {
+						velocity = (-(last.x - first.x) / (last.t - first.t)) * DRAG_SPEED;
+					}
+					const carry = reduceMotion.matches ? 0 : velocity * MOMENTUM;
+					settle(clamp(target + carry, 0, maxScroll()), startScroll);
+				};
+				window.addEventListener('mouseup', (e) => release(e.timeStamp));
+				window.addEventListener('blur', () => release());
+
+				// ---- Horizontales Mausrad / Trackpad (vertikales Rad scrollt weiter die Seite) ----
+				slider.addEventListener(
+					'wheel',
+					(e) => {
+						if (isDown) return;
+						let delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.shiftKey ? e.deltaY : 0;
+						if (delta === 0) return;
+						e.preventDefault();
+						if (e.deltaMode === 1) delta *= 32;
+						else if (e.deltaMode === 2) delta *= slider.clientWidth;
+						if (!wheelTimer) {
+							syncFromDom();
+							wheelOrigin = target;
+							setMoving();
+						}
+						target = clamp(target + delta, 0, maxScroll());
+						begin();
+						clearTimeout(wheelTimer);
+						wheelTimer = window.setTimeout(() => {
+							wheelTimer = 0;
+							settle(target, wheelOrigin);
+						}, WHEEL_IDLE);
+					},
+					{ passive: false },
+				);
+
+				// ---- Touch: nativ lassen ----
+				// Nur ein passiver Listener (kein preventDefault). Läuft gerade noch unsere Animation,
+				// wird sie beendet und das CSS-Snap übernimmt wieder.
+				slider.addEventListener(
+					'touchstart',
+					() => {
+						lastTouch = Date.now();
+						if (animating) finish();
+					},
+					{ passive: true },
+				);
+
+				// Nach einem echten Drag darf das Loslassen über dem Button keinen Link-Klick auslösen.
+				slider.addEventListener(
+					'click',
+					(e) => {
+						if (!hasMoved) return;
+						e.preventDefault();
+						e.stopPropagation();
+						hasMoved = false;
+					},
+					true,
+				);
+			}
+		</script>
+		</Layout>

@@ -1,0 +1,33 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = 'Haustechnik Schmidt', description = 'Rechtliche Informationen von Haustechnik Schmidt.' } = Astro.props;
+---
+
+<html lang="de" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body class="flex min-h-screen flex-col bg-slate-50 pt-[var(--header-h,6rem)] text-slate-950 antialiased">
+		<Header />
+		<main class="mx-auto w-full max-w-4xl flex-grow px-6 py-16 lg:px-4">
+			<a href="/" class="relative z-10 mb-10 inline-flex items-center gap-2 text-sm font-semibold text-cyan-700 transition hover:text-cyan-900">
+				<span aria-hidden="true">&larr;</span> Zurück zur Startseite
+			</a>
+			<div class="prose prose-slate max-w-none prose-headings:tracking-tight prose-headings:text-slate-900 prose-a:text-cyan-700 hover:prose-a:text-cyan-900">
+				<slot />
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

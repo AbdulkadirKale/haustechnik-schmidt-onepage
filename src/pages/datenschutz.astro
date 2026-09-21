@@ -1,0 +1,26 @@
+---
+import { getEntry } from 'astro:content';
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const firmenprofil = (await getEntry('firmenprofil', 'firmenprofil'))?.data;
+const telefonHref = firmenprofil?.phone.replace(/[^\d+]/g, '') ?? '';
+---
+
+	<LegalLayout title={`Datenschutz | ${firmenprofil?.companyName ?? ''}`} description={`Datenschutzerklärung von ${firmenprofil?.companyName ?? ''}.`}>
+		<article>
+				<p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-700">Rechtliche Informationen</p>
+				<h1>Datenschutzerklärung</h1>
+				<p>Mit dieser Datenschutzerklärung informieren wir Sie über die Verarbeitung personenbezogener Daten auf dieser Website.</p>
+				<h2>1. Verantwortlicher</h2>
+				<p>Verantwortlicher für die Datenverarbeitung ist:<br />{firmenprofil?.companyName}<br />{firmenprofil?.street}<br />{firmenprofil?.postalCode} {firmenprofil?.city}<br />Telefon: <a href={`tel:${telefonHref}`}>{firmenprofil?.phone}</a><br />E-Mail: <a href={`mailto:${firmenprofil?.email}`} class="relative z-50 cursor-pointer block">{firmenprofil?.email}</a></p>
+				<h2>2. Datenerfassung auf dieser Website</h2>
+				<p>Beim Besuch dieser Website werden durch den Webserver automatisch Informationen in sogenannten Server-Log-Dateien gespeichert. Dazu können Browsertyp, Betriebssystem, Referrer-URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage und IP-Adresse gehören. Diese Daten werden ausschließlich zur Sicherstellung eines störungsfreien Betriebs und zur Verbesserung unseres Angebots verarbeitet.</p>
+				<p>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.</p>
+				<h2>3. Kontaktaufnahme</h2>
+				<p>Wenn Sie uns per E-Mail, Telefon oder über das Kontaktformular kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage und für mögliche Anschlussfragen verarbeitet. Die Daten werden nicht ohne Ihre Einwilligung weitergegeben und gelöscht, sobald der Zweck der Speicherung entfällt, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+				<h2>4. SSL- beziehungsweise TLS-Verschlüsselung</h2>
+				<p>Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- beziehungsweise TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an der Adresszeile des Browsers und dem Schloss-Symbol.</p>
+				<h2>5. Ihre Rechte</h2>
+				<p>Sie haben im Rahmen der gesetzlichen Vorschriften das Recht auf Auskunft über Ihre gespeicherten personenbezogenen Daten, auf Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit. Außerdem können Sie einer Verarbeitung widersprechen und sich bei einer Datenschutzaufsichtsbehörde beschweren.</p>
+		</article>
+	</LegalLayout>
