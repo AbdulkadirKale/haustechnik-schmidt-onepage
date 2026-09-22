@@ -25,7 +25,6 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 const oeffnungszeiten = (firmenprofil?.openingHours ?? '').split('\n').filter((zeile) => zeile.trim() !== '');
 const heroImage = leistung.bilder[0]?.src ?? '';
 
-// Markdown-Body der Leistung als Astro-Komponente.
 const { Content } = await render(entry);
 ---
 
@@ -55,8 +54,8 @@ const { Content } = await render(entry);
 
 				<aside class="lg:col-span-1">
 					<div class="sticky top-28 rounded-2xl bg-slate-50 p-8 shadow-sm">
-						<h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-cyan-700">Schnelle Hilfe benötigt?</h2>
-						<p class="mb-6 text-2xl font-bold text-slate-900">Wir sind für Sie da.</p>
+						<h2 class="mb-2 text-sm font-bold uppercase tracking-wider text-cyan-700">Fragen zu dieser Leistung?</h2>
+						<p class="mb-6 text-2xl font-bold text-slate-900">Rufen Sie uns an oder schreiben Sie uns.</p>
 
 						<dl class="space-y-5 text-slate-900">
 							<div>

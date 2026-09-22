@@ -1,7 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 
-// Leistungen: ein Markdown-File pro Leistung, Body = Detailtext.
 const leistungen = defineCollection({
 	loader: glob({ base: './src/content/leistungen', pattern: '**/*.md' }),
 	schema: z.object({
@@ -19,7 +18,6 @@ const leistungen = defineCollection({
 	}),
 });
 
-// Singleton: eine YAML-Datei mit genau einem Eintrag unter dem Key "firmenprofil".
 const firmenprofil = defineCollection({
 	loader: file('src/content/firmenprofil.yaml'),
 	schema: z.object({
@@ -38,7 +36,6 @@ const firmenprofil = defineCollection({
 	}),
 });
 
-// Singleton: alle Texte der Startseite.
 const startseite = defineCollection({
 	loader: file('src/content/startseite.yaml'),
 	schema: z.object({

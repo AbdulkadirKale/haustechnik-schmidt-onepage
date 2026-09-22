@@ -1,19 +1,18 @@
-# Singleton: wird über getEntry('startseite', 'startseite') geladen.
 startseite:
   heroTopLabel: SANITÄR & HEIZUNG
-  heroHeadline: Ihr zuverlässiger Partner für Sanitär & Heizung
-  heroSubheadline: Ihre Haustechnik in guten Händen. Wir planen und realisieren Lösungen, die zuverlässig funktionieren und sich gut anfühlen.
-  heroStatBox: 25+ Jahre Erfahrung für moderne Haustechnik in der Region.
-  heroButton1Text: Leistungen entdecken
+  heroHeadline: Sanitär und Heizung in Berlin
+  heroSubheadline: Reparatur, Sanierung und Wartung für Wohnungen und Häuser. Rufen Sie an, wir nennen Ihnen einen Termin.
+  heroStatBox: Über 25 Jahre Erfahrung in Berlin und Umgebung.
+  heroButton1Text: Leistungen ansehen
   heroButton1Link: '#leistungen'
   heroButton2Text: Kontakt aufnehmen
   heroButton2Link: '#kontakt'
   heroBackgroundImage: ''
-  servicesHeadline: Technik, die den Alltag leichter macht.
-  servicesSubtext: Persönliche Beratung, saubere Arbeit und Lösungen, die langfristig zu Ihnen passen.
-  contactHeadline: Wir sind für Sie da.
-  contactSubtext: 'Ob Beratung, Reparatur oder neues Heizsystem: Sprechen Sie uns an. Wir melden uns persönlich bei Ihnen.'
-  footerCopyright: Copyright © 2026 Haustechnik Schmidt
+  servicesHeadline: Bad, Heizung und Wartung
+  servicesSubtext: Wir arbeiten in Berlin und Umgebung. Vor jedem Auftrag erhalten Sie ein Angebot mit festem Preis.
+  contactHeadline: Rufen Sie uns an oder schreiben Sie uns.
+  contactSubtext: Schildern Sie uns kurz Ihr Anliegen. Wir melden uns bei Ihnen.
+  footerCopyright: © 2026 Haustechnik Schmidt
   notdienstLabel: Notdienst 24/7
   contactLabel: Kontakt
   phoneLabel: Telefon

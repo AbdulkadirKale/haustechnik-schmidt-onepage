@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local tool state
+.claude/
+*claude-notify-signals*
+
+# AI tooling instructions (kept locally, not published)
+AGENTS.md
+CLAUDE.md

@@ -1,4 +1,3 @@
-# Singleton: wird über getEntry('firmenprofil', 'firmenprofil') geladen.
 firmenprofil:
   companyName: Haustechnik Schmidt
   inhaber: Max Schmidt

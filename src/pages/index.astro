@@ -82,19 +82,19 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					<div class="relative min-h-[380px] overflow-hidden rounded-3xl border border-cyan-300/20 bg-gradient-to-br from-cyan-900 via-slate-800 to-slate-950 shadow-2xl shadow-blue-950/20">
 						<div class="absolute -right-16 -top-16 h-64 w-64 rounded-full border border-cyan-300/20"></div>
 						<div class="absolute bottom-8 left-8 right-8 border-l-2 border-cyan-300/70 bg-slate-950/60 p-6 backdrop-blur-sm">
-							<p class="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">Handwerk mit Haltung</p>
-							<p class="mt-3 text-xl font-semibold text-white">Saubere Lösungen. Spürbarer Komfort.</p>
+							<p class="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">Einsatzgebiet</p>
+							<p class="mt-3 text-xl font-semibold text-white">Berlin und Umgebung</p>
 						</div>
 						<div class="absolute bottom-0 right-12 h-56 w-24 rotate-12 border-l border-r border-cyan-300/20 bg-cyan-300/10"></div>
 					</div>
 					<div>
 						<p class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Über uns</p>
-						<h2 class="max-w-xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">25 Jahre Erfahrung in Sanitär & Heizung</h2>
-						<p class="mt-6 max-w-xl leading-8 text-slate-300">Wir verbinden solides Handwerk mit moderner Haustechnik. Von der ersten Beratung bis zur letzten Prüfung arbeiten wir sauber, verbindlich und mit Blick auf eine Lösung, die lange Freude macht.</p>
+						<h2 class="max-w-xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">Über 25 Jahre Sanitär und Heizung</h2>
+						<p class="mt-6 max-w-xl leading-8 text-slate-300">Haustechnik Schmidt ist ein Handwerksbetrieb aus Berlin. Wir beraten Sie vor Ort, führen die Arbeiten aus und prüfen zum Schluss, ob alles einwandfrei läuft.</p>
 						<ul class="mt-8 space-y-4 text-slate-200">
-							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> Pünktlichkeit und verlässliche Termine</li>
-							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> Transparente Preise ohne Überraschungen</li>
-							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> 24/7 Notdienst, wenn es darauf ankommt</li>
+							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> Feste Termine, die wir einhalten</li>
+							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> Preise vorab, ohne versteckte Kosten</li>
+							<li class="flex items-center gap-3"><span class="flex h-6 w-6 items-center justify-center bg-cyan-300 text-sm font-bold text-slate-950">✓</span> Notdienst rund um die Uhr</li>
 						</ul>
 					</div>
 				</div>
@@ -105,15 +105,15 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					<div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
 						<div>
 							<p class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-cyan-700">Kundenstimmen</p>
-							<h2 class="max-w-xl text-4xl font-semibold tracking-tight sm:text-5xl">Was unsere Kunden sagen.</h2>
+							<h2 class="max-w-xl text-4xl font-semibold tracking-tight sm:text-5xl">Das sagen unsere Kunden</h2>
 						</div>
-						<p class="max-w-sm leading-7 text-slate-500">Verlässlicher Service spricht sich herum. Ein kleiner Auszug aus unserem Kundenfeedback.</p>
+						<p class="max-w-sm leading-7 text-slate-500">Einige Rückmeldungen aus den letzten Monaten.</p>
 					</div>
 					<div class="grid gap-5 lg:grid-cols-3">
 						{[
-							{ name: 'Max Mustermann', quote: 'Von der Beratung bis zur Montage war alles professionell, freundlich und pünktlich.' },
-							{ name: 'Anna Schneider', quote: 'Schnelle Hilfe im Notdienst und eine saubere Reparatur. Genau so wünscht man sich Handwerk.' },
-							{ name: 'Thomas Weber', quote: 'Transparente Planung, faire Preise und ein Ergebnis, das unseren Alltag wirklich verbessert.' },
+							{ name: 'Max Mustermann', quote: 'Der Termin wurde eingehalten, der Preis entsprach dem Angebot. Nach zwei Wochen war das Bad fertig.' },
+							{ name: 'Anna Schneider', quote: 'Rohrbruch abends um zehn. Eine halbe Stunde später stand jemand vor der Tür.' },
+							{ name: 'Thomas Weber', quote: 'Die neue Heizung läuft leise und sparsam. Der Einbau ging schneller als angekündigt.' },
 						].map((testimonial) => (
 							<article class="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg shadow-blue-900/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-900/15">
 								<div class="flex gap-1 text-lg text-amber-500" aria-label="5 von 5 Sternen">★★★★★</div>
@@ -130,26 +130,23 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 		
 
 		<script>
-			// Premium-Scrolling für den Leistungen-Slider: eigene Lerp-Animation (Friction) plus Momentum
-			// für Maus-Drag und horizontales Mausrad/Trackpad. Touch bleibt komplett nativ (CSS Scroll-Snap).
 			const slider = document.getElementById('leistungen-slider');
 
 			if (slider) {
-				// ---- Feintuning ----
-				const DRAG_SPEED = 1.5; // Kaydırma hızı çarpanı: Scroll-px pro px Mausweg
-				const SMOOTH_DRAG = 110; // ms Nachlauf beim Ziehen (größer = schwerer, "butterweich")
-				const SMOOTH_SETTLE = 380; // ms Ausgleiten in die Zielkarte (größer = sanfteres Anfahren, längeres Gleiten)
-				const MOMENTUM = 380; // ms Trägheit: Loslass-Geschwindigkeit x Wert = Zusatzweg
-				const FLICK_MIN = 80; // px: kürzere Bewegungen fallen auf die aktuelle Karte zurück
-				const WHEEL_IDLE = 140; // ms ohne Wheel-Event, danach rastet der Slider ein
+				const DRAG_SPEED = 1.5;
+				const SMOOTH_DRAG = 110;
+				const SMOOTH_SETTLE = 380;
+				const MOMENTUM = 380;
+				const FLICK_MIN = 80;
+				const WHEEL_IDLE = 140;
 
 				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 				const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 				const maxScroll = () => slider.scrollWidth - slider.clientWidth;
 
-				let pos = 0; // aktuelle Position (float; scrollLeft wird vom Browser gerundet)
-				let vel = 0; // aktuelle Geschwindigkeit in px/ms: bleibt beim Loslassen erhalten (Momentum)
-				let target = 0; // Zielposition, auf die pos zuläuft
+				let pos = 0;
+				let vel = 0;
+				let target = 0;
 				let rafId = 0;
 				let lastFrame = 0;
 				let animating = false;
@@ -158,20 +155,18 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 				let hasMoved = false;
 				let startX = 0;
 				let startScroll = 0;
-				let samples = []; // letzte Mauspositionen für die Loslass-Geschwindigkeit
+				let samples = [];
 				let lastTouch = 0;
 				let wheelTimer = 0;
 				let wheelOrigin = 0;
 
-				// CSS-Snap und Smooth-Scroll würden jeden Frame sofort zurücksetzen bzw. verzögern:
-				// nur solange unsere Animation läuft abschalten, danach übernimmt wieder das CSS (Touch, Tastatur, Anker).
 				const begin = () => {
 					if (animating) return;
 					animating = true;
 					slider.style.scrollSnapType = 'none';
 					slider.style.scrollBehavior = 'auto';
 					for (const card of slider.children) card.style.willChange = 'translate';
-					lastFrame = 0; // erster Frame: dt = 0 (der rAF-Zeitstempel kann vor performance.now() liegen)
+					lastFrame = 0;
 					rafId = requestAnimationFrame(tick);
 				};
 				const finish = () => {
@@ -185,22 +180,18 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					slider.style.scrollSnapType = '';
 					slider.style.scrollBehavior = '';
 				};
-				// Hover-Effekte pausieren, solange sich der Slider bewegt (Karten wandern unter dem stehenden Cursor durch).
 				const setMoving = () => slider.classList.add('is-moving');
 
-				// scrollLeft ist ganzzahlig (bei 144/240 Hz sichtbares Treppen-Ruckeln bei langsamer Bewegung). Deshalb:
-				// ganzzahliger scrollLeft + Bruchteil als Sub-Pixel-Translation der Karten (läuft auf dem Compositor).
 				const render = () => {
 					slider.scrollLeft = Math.floor(pos);
-					const frac = pos - slider.scrollLeft; // tatsächlich gesetzten Wert lesen (robust bei DPR != 1)
+					const frac = pos - slider.scrollLeft;
 					const offset = frac ? `${-frac}px 0` : '';
 					for (const card of slider.children) card.style.translate = offset;
 				};
-				// Kritisch gedämpfte Feder (SmoothDamp): weiches Anfahren und Ausgleiten, die Geschwindigkeit ist
-				// immer stetig, also kein Ruck beim Loslassen. Frame-Rate-unabhängig (60, 120, 144 Hz fühlen sich gleich an).
 				const smoothDamp = (dt, smoothTime) => {
 					const omega = 2 / smoothTime;
 					const x = omega * dt;
+					// polynomial approximation of exp(-x)
 					const decay = 1 / (1 + x + 0.48 * x * x + 0.235 * x * x * x);
 					const change = pos - target;
 					const temp = (vel + omega * change) * dt;
@@ -217,11 +208,10 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 						smoothDamp(dt, isDown || wheelTimer ? SMOOTH_DRAG : SMOOTH_SETTLE);
 					}
 					const clamped = clamp(pos, 0, maxScroll());
-					if (clamped !== pos) vel = 0; // am Rand stoppt die Bewegung
+					if (clamped !== pos) vel = 0;
 					pos = clamped;
 					render();
 					const remaining = Math.abs(target - pos);
-					// Fast angekommen: Klicks und Hover-Effekte wieder freigeben, die letzten Pixel gleiten unmerklich aus.
 					if (!isDown && !wheelTimer && remaining < 40) slider.classList.remove('is-moving');
 					if (!isDown && !wheelTimer && remaining < 0.2 && Math.abs(vel) < 0.006) {
 						pos = target;
@@ -236,7 +226,6 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					if (!animating) pos = target = slider.scrollLeft;
 				};
 
-				// Einrastpunkte = Mitte jeder Karte (wie snap-center), an Anfang und Ende begrenzt.
 				const getSnaps = () => {
 					const rect = slider.getBoundingClientRect();
 					const center = rect.left + slider.clientLeft + slider.clientWidth / 2;
@@ -248,7 +237,6 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 				const nearest = (snaps, x) =>
 					snaps.reduce((best, s, i) => (Math.abs(s - x) < Math.abs(snaps[best] - x) ? i : best), 0);
 
-				// Gleitet zur Karte, die der voraussichtlichen Landeposition am nächsten liegt.
 				const settle = (projected, origin) => {
 					const snaps = getSnaps();
 					const from = nearest(snaps, origin);
@@ -257,16 +245,13 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					if (to === from && Math.abs(moved) > FLICK_MIN) {
 						to = from + Math.sign(moved);
 					}
-					to = clamp(to, Math.max(0, from - 1), Math.min(snaps.length - 1, from + 1)); // max. eine Karte pro Geste
+					to = clamp(to, Math.max(0, from - 1), Math.min(snaps.length - 1, from + 1));
 					target = snaps[to];
 					begin();
 				};
 
-				// ---- Maus-Drag ----
 				slider.addEventListener('mousedown', (e) => {
-					// Nach einem Tap feuern Browser simulierte Mausereignisse: ignorieren, Touch bleibt nativ.
 					if (e.button !== 0 || Date.now() - lastTouch < 800) return;
-					// Verhindert das native Ziehen von Bildern/Links und die Textmarkierung.
 					e.preventDefault();
 					syncFromDom();
 					vel = 0;
@@ -280,7 +265,6 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					begin();
 				});
 
-				// Auf window, damit der Drag auch weiterläuft, wenn der Cursor den Slider verlässt.
 				window.addEventListener('mousemove', (e) => {
 					if (!isDown) return;
 					e.preventDefault();
@@ -298,10 +282,9 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					if (!isDown) return;
 					isDown = false;
 					slider.classList.remove('cursor-grabbing');
-					// Loslass-Geschwindigkeit aus den letzten ~100 ms; wer vor dem Loslassen stoppt, hat keine Trägheit.
 					const last = samples[samples.length - 1];
 					const first = samples.find((s) => last.t - s.t <= 100);
-					let velocity = 0; // Scroll-px pro ms, positiv = vorwärts
+					let velocity = 0;
 					if (first && last.t > first.t && now - last.t < 80) {
 						velocity = (-(last.x - first.x) / (last.t - first.t)) * DRAG_SPEED;
 					}
@@ -311,7 +294,6 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 				window.addEventListener('mouseup', (e) => release(e.timeStamp));
 				window.addEventListener('blur', () => release());
 
-				// ---- Horizontales Mausrad / Trackpad (vertikales Rad scrollt weiter die Seite) ----
 				slider.addEventListener(
 					'wheel',
 					(e) => {
@@ -337,9 +319,6 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					{ passive: false },
 				);
 
-				// ---- Touch: nativ lassen ----
-				// Nur ein passiver Listener (kein preventDefault). Läuft gerade noch unsere Animation,
-				// wird sie beendet und das CSS-Snap übernimmt wieder.
 				slider.addEventListener(
 					'touchstart',
 					() => {
@@ -349,7 +328,6 @@ const heroBackgroundImage = startseite?.heroBackgroundImage ?? '';
 					{ passive: true },
 				);
 
-				// Nach einem echten Drag darf das Loslassen über dem Button keinen Link-Klick auslösen.
 				slider.addEventListener(
 					'click',
 					(e) => {

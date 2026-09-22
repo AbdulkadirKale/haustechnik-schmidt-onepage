@@ -2,8 +2,7 @@
 title: Heizungsmodernisierung
 order: 2
 summary: >-
-  Alte Heizung, hohe Kosten? Wir beraten herstellerneutral, planen die passende Anlage und
-  übernehmen Austausch, Inbetriebnahme und Förderantrag.
+  Wir tauschen alte Heizungen aus, etwa gegen eine Wärmepumpe oder einen Brennwertkessel. Vorher prüfen wir Verbrauch und Heizlast Ihres Gebäudes.
 bilder:
   - src: /images/leistungen/heizung-1.jpg
     alt: Moderne Heizungsanlage im Technikraum
@@ -11,23 +10,18 @@ bilder:
     alt: Wärmepumpe im Außenbereich
 ---
 
-## Effizient heizen, planbar investieren
+## Vorgehen
 
-Viele Anlagen im Bestand laufen deutlich über ihrer wirtschaftlichen Lebensdauer. Ein Austausch senkt
-den Verbrauch spürbar – vorausgesetzt, die neue Anlage passt zum Gebäude. Deshalb beginnen wir immer
-mit einer Bestandsaufnahme statt mit einem Produktvorschlag.
+Vor dem Austausch prüfen wir den Verbrauch, die Heizlast und den Zustand der bestehenden Anlage. Auf dieser Grundlage empfehlen wir eine passende Lösung, unabhängig vom Hersteller.
 
-### Unsere Leistungen
+## Was wir machen
 
-- Analyse von Verbrauch, Heizlast und Bestandsanlage
-- Herstellerneutrale Empfehlung: Wärmepumpe, Brennwerttechnik oder Hybridlösung
-- Kompletter Austausch inklusive Demontage und Entsorgung
-- Hydraulischer Abgleich und Inbetriebnahme
+- Bestandsaufnahme und Heizlastberechnung
+- Wärmepumpe, Brennwerttechnik oder eine Kombination
+- Ausbau der alten Anlage und Entsorgung
+- Einbau, hydraulischer Abgleich und Inbetriebnahme
 - Unterstützung bei Förderanträgen
 
-### Förderung
+## Förderung
 
-Für viele Maßnahmen stehen staatliche Zuschüsse zur Verfügung. Wir prüfen Ihre Situation, benennen die
-in Frage kommenden Programme und stellen die technischen Nachweise bereit, die Ihr Antrag benötigt.
-
-Den Antrag müssen Sie vor Auftragsvergabe stellen – sprechen Sie uns daher früh an.
+Für viele Heizungstausch-Projekte gibt es staatliche Zuschüsse. Wir sagen Ihnen, welche Programme infrage kommen, und liefern die technischen Nachweise für den Antrag. In der Regel muss der Antrag vor der Auftragsvergabe gestellt werden, sprechen Sie uns deshalb früh an.
